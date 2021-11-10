@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/vue@next"></script>
+
+    </head>
+
+    <body>
+
+        <div id="app">
+
+<!-- All the parts of the page that vue will manage will go here-->
+            <h1>Hello Vue!</h1>
+
+            <p>Original Message: {{ message }}</p>
+
+            <p>Added Exclamation Points: {{ messageWithExclamationPoints }}</p>
+
+            <button v-on:click="addExclamation">Add !</button>
+
+            <button v-on:click="clearExclamation">Clear</button>
+
+            <p>This class is {{ thisClass}}</p>
+        </div>
+
+
+            <script>
+
+                let app = Vue.createApp({
+                    data() {
+                        return {
+                            message: 'hello',
+                            maxExclamationPoints: 10,
+                            exclamationPoints: 0,
+                            thisClass: 'Web Programming'
+                        }
+                    },
+                    methods: {
+                        addExclamation() {
+                            if (this.exclamationPoints < this.maxExclamationPoints) {
+                            this.exclamationPoints++ // this.exclamationPoints = this.exclamationPoints + 1
+                            // this.message = this.message + '!'
+                            } else {
+                                alert('No more exclamation points allowed')
+                            }
+                        },
+
+                        clearExclamation() {
+                            // this.message = 'hello'
+                            this.exclamationPoints = 0
+                        }
+                        
+                    },
+                    computed: {
+                        messageWithExclamationPoints() {
+                            let messageWithPoints = this.message
+                            for (let x = 0; x < this.exclamationPoints; x++) {
+                                messageWithPoints = messageWithPoints + '!'
+                            }
+                            return messageWithPoints
+                        }
+                    }
+                })
+
+                app.mount('#app')
+
+            </script>
+
+    </body>
+
+</html>
